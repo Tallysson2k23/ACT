@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro - ACT</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    <form id="cadastroForm">
+        <h2>Cadastrar Técnico / OS</h2>
+        <input type="text" id="nome" placeholder="Nome da Dupla ou Técnico" required>
+        <select id="tipo">
+            <option value="Solo">Solo</option>
+            <option value="Dupla">Dupla</option>
+        </select>
+        <input type="number" id="dias" placeholder="Dias Trabalhados" required>
+        <input type="number" id="os" placeholder="OS Finalizadas" required>
+        <button type="submit">Cadastrar</button>
+    </form>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/cadastro.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - ACT</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    <h2>Acompanhamento Técnico</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Tipo</th>
+                <th>Dias Trabalhados</th>
+                <th>OS Finalizadas</th>
+                <th>Média por Dia</th>
+            </tr>
+        </thead>
+        <tbody id="tabelaDados"></tbody>
+    </table>
+    <a href="cadastro.html">Cadastrar Técnico/OS</a> | <a href="#" onclick="firebase.auth().signOut()">Logout</a>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
