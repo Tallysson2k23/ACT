@@ -1,30 +1,24 @@
-auth.onAuthStateChanged(user => {
-    if (!user) {
-        window.location.href = "index.html";
-    } else {
-        carregarDados();
-    }
-});
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
 
-function carregarDados() {
-    const tabela = document.getElementById("tabelaDados");
-    tabela.innerHTML = "";
+const db = getFirestore();
 
-    db.collection("tecnicos").get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            const data = doc.data();
-            const media = (data.os_finalizadas / data.dias_trabalhados).toFixed(2);
+async function carregarDashboard() {
+    const dashboardContainer = document.getElementById("dashboardContainer");
+    dashboardContainer.innerHTML = ""; // Limpa antes de carregar
 
-            const row = `
-                <tr>
-                    <td>${data.nome}</td>
-                    <td>${data.tipo}</td>
-                    <td>${data.dias_trabalhados}</td>
-                    <td>${data.os_finalizadas}</td>
-                    <td>${media}</td>
-                </tr>
-            `;
-            tabela.innerHTML += row;
-        });
+    const querySnapshot = await getDocs(collection(db, "tecnicos"));
+    querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        const card = document.createElement("div");
+        card.classList.add("tecnico-card");
+        card.innerHTML = `
+            <h3>${data.nome} (${data.tipo})</h3>
+            <p>O.S Finalizadas: ${data.osFinalizadas}</p>
+            <p>Dias Trabalhados: ${data.dias}</p>
+            <p><strong>Média Diária: ${data.media}</strong></p>
+        `;
+        dashboardContainer.appendChild(card);
     });
 }
+
+carregarDashboard();

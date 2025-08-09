@@ -6,14 +6,13 @@ document.getElementById("loginForm").addEventListener("submit", function(e) {
     const btnEntrar = document.getElementById("btnEntrar");
     const loader = document.getElementById("loader");
 
-    // Mostrar loader
     loader.classList.remove("hidden");
     btnEntrar.disabled = true;
     btnEntrar.textContent = "Entrando...";
 
-    auth.signInWithEmailAndPassword(email, senha)
+    firebase.auth().signInWithEmailAndPassword(email, senha)
         .then((userCredential) => {
-            window.location.href = "dashboard.html";
+            window.location.href = "painel.html"; // Redireciona para painel
         })
         .catch((error) => {
             let msg = "";

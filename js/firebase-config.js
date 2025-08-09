@@ -1,4 +1,5 @@
 // firebase-config.js
+
 const firebaseConfig = {
     apiKey: "AIzaSyBe63bdjNOzmcxEw7No9wrLeHy26lNb-P0",
     authDomain: "acompanhamentotec-1fea7.firebaseapp.com",
